@@ -1,7 +1,7 @@
 module PiSys
   class Memory < Stats
 
-    KEY = KEY
+    KEY = :memory
     VARIATIONS = [:status, :usage, :info]
     COMMAND = :get_mem
 
