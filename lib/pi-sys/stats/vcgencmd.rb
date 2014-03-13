@@ -10,13 +10,14 @@ module PiSys
         get_mem: %w(arm gpu)
     }
 
-    def initialize
-      super
+    def initialize(key, command)
+      @key, @command = key, command
+      super(key, nil)
     end
 
     private
 
-    def fetch(command=COMMAND)
+    def fetch(command=@command)
       if COMMANDS.has_key? command
         if COMMANDS[command]
           hash ||= {}

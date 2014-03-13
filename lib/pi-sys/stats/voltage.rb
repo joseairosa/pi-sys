@@ -4,7 +4,7 @@ module PiSys
     COMMAND = :measure_volts
 
     def initialize
-      super
+      super(KEY, COMMAND)
     end
 
     def fetch

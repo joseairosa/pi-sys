@@ -4,7 +4,7 @@ module PiSys
     COMMAND = :measure_temp
 
     def initialize
-      super
+      super(KEY, COMMAND)
     end
 
     def fetch

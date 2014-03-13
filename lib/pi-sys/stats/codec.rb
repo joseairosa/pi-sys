@@ -4,7 +4,7 @@ module PiSys
     COMMAND = :codec_enabled
 
     def initialize
-      super
+      super(KEY, COMMAND)
     end
 
     def fetch

@@ -5,7 +5,7 @@ module PiSys
     VARIATIONS = [:io, :usage]
 
     def initialize
-      super
+      super(KEY, VARIATIONS)
     end
 
     def fetch

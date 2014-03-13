@@ -4,7 +4,7 @@ module PiSys
     COMMAND = :get_config
 
     def initialize
-      super
+      super(KEY, COMMAND)
     end
 
     def fetch

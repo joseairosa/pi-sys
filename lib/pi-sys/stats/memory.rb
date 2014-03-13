@@ -6,8 +6,8 @@ module PiSys
     COMMAND = :get_mem
 
     def initialize
-      @vcgencmd = Vcgencmd.new
-      super
+      @vcgencmd = Vcgencmd.new(KEY, COMMAND)
+      super(KEY, VARIATIONS)
     end
 
     def fetch
