@@ -1,5 +1,5 @@
 module PiSys
-  class Cpu < Stats
+  class Uptime < Stats
 
     KEY = :uptime
     VARIATIONS = nil
