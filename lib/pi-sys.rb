@@ -18,9 +18,9 @@ module PiSys
   MODULES = [:cpu, :disk, :memory, :clock, :voltage, :temperature, :codec, :config, :uptime].map { |mod|
   }.reduce({}, :merge)
 
-  MODULES.each do |method|
-    define_method(method) {
-      MODULES[method]
-    }
+  class << self
+    MODULES.each do |mod, _|
+      define_method(mod) { MODULES[mod].fetch }
+    end
   end
 end
