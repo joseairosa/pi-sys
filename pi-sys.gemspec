@@ -14,7 +14,9 @@ Gem::Specification.new do |s|
   s.email       = 'me@joseairosa.com'
   s.files       = %w(lib/pi-sys.rb)
 
-  s.files = Dir['{app,config,db,lib}/**/*'] + %w(MIT-LICENSE Rakefile README.md)
+  s.files = Dir['{app,config,db,lib}/**/*'] + %w(LICENSE README.md)
 
-  s.add_development_dependency 'pry'
+  s.add_development_dependency 'pry-plus', '~> 1.0.0'
+  s.add_development_dependency 'rake', '~> 10.1.0'
+  s.add_development_dependency 'rspec', '~> 2.14.1'
 end
