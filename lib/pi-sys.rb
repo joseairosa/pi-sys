@@ -14,8 +14,8 @@ require 'lib/pi-sys/stats/voltage'
 
 module PiSys
   STATS = {}
-  MODULES = [:cpu, :disk, :memory, :clock, :voltage, :temperature, :codec, :config, :stats, :uptime].map { |mod|
     {mod => Kernel.const_get(mod.to_s.capitalize).new}
+  MODULES = [:cpu, :disk, :memory, :clock, :voltage, :temperature, :codec, :config, :uptime].map { |mod|
   }.reduce({}, :merge)
 
   MODULES.each do |method|
