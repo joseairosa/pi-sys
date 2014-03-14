@@ -17,7 +17,7 @@ module PiSys
       output = fetch_status
       output.gsub!(/ kB$/, '').gsub(/\: */, ' ')
       to_hash([KEY, :status], output) do |data|
-        {data[0].to_sym => data[1].to_i / 1024}
+        {data[0].gsub(':','') => data[1].to_i / 1024}
       end
       STATS[KEY][:status][:MemUsed] = STATS[KEY][:status][:MemTotal] - STATS[KEY][:status][:MemFree] -
         STATS[KEY][:status][:Buffers] - STATS[KEY][:status][:Cached]
