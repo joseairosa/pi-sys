@@ -29,13 +29,7 @@ module PiSys
     private
 
     def reset
-      if @variations
-        @variations.each do |section|
-          STATS[@key][section] = {}
-        end
-      else
-        STATS[@key] = {}
-      end
+      STATS[@key] = {}
     end
 
     def fetch
