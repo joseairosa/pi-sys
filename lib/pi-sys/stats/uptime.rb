@@ -13,8 +13,18 @@ module PiSys
 
       output = `uptime`
 
-      to_hash(KEY, output, 3) do |data|
-        {time: data[0], up: data[2], users: data[3], load_average: {one: data[7], five: data[8], fiftheen: data[9]}}
+      to_hash(KEY, output) do |data|
+        index_of_reference = data.index('user,') || data.index('users,')
+        {
+          time: data[0],
+          up: data[2..index_of_reference-2].join(' ').gsub(/(,$)/i,''),
+          users: data[index_of_reference-1],
+          load_average: {
+            one: data[data.length-3].gsub(',',''),
+            five: data[data.length-2].gsub(',',''),
+            fiftheen: data[data.length-1].gsub(',','')
+          }
+        }
       end
     end
   end

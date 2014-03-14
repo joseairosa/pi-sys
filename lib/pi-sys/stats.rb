@@ -12,7 +12,7 @@ module PiSys
     end
 
     def to_hash(stat, output, start_index=0)
-      output.split("\n")[start_index..-1].each do |data_line|
+      output.strip.split("\n")[start_index..-1].each do |data_line|
         data = data_line.split(' ')
         unless data.empty?
           if stat.kind_of? Array
