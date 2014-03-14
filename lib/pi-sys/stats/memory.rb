@@ -19,8 +19,9 @@ module PiSys
       to_hash([KEY, :status], output) do |data|
         {data[0].gsub(':','') => data[1].to_i / 1024}
       end
-      STATS[KEY][:status][:MemUsed] = STATS[KEY][:status][:MemTotal] - STATS[KEY][:status][:MemFree] -
-        STATS[KEY][:status][:Buffers] - STATS[KEY][:status][:Cached]
+
+      STATS[KEY][:status]['MemUsed'] = STATS[KEY][:status]['MemTotal'] - STATS[KEY][:status]['MemFree'] -
+        STATS[KEY][:status]['Buffers'] - STATS[KEY][:status]['Cached']
 
       # info
       STATS[KEY][:info] = @vcgencmd.fetch
