@@ -15,7 +15,9 @@ module PiSys
       output.strip.split("\n")[start_index..-1].each do |data_line|
         data = data_line.split(' ')
         unless data.empty?
-          if stat.kind_of? Array
+          if statistic.kind_of? Array
+            STATS[statistic[0]] ||= {}
+            STATS[statistic[0]][statistic[1]] ||= {}
             STATS[statistic[0]][statistic[1]].merge!(yield(data)) if block_given?
           else
             STATS[statistic] ||= {}
