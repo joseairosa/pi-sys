@@ -12,7 +12,7 @@ module PiSys
 
     def initialize(key, command)
       @key, @command = key, command
-      super(key, nil)
+      super(@key, nil)
     end
 
     private
@@ -22,14 +22,19 @@ module PiSys
         if COMMANDS[command]
           hash ||= {}
           COMMANDS[command].each do |option|
-            output = `/opt/vc/bin/vcgencmd #{command} #{option}`
-            hash[option] = Hash[output.split("\n").map {|entry| entry.split('=')}]
+            output = run_command(command, option)
+            hash[option] = Hash[output.strip.split("\n").map {|entry| entry.split('=')}]
           end
+          hash
         else
-          output = `/opt/vc/bin/vcgencmd #{command}`
-          Hash[output.split("\n").map {|entry| entry.split('=')}]
+          output = run_command(command)
+          Hash[output.strip.split("\n").map {|entry| entry.split('=')}]
         end
       end
+    end
+
+    def run_command(command, option=nil)
+      `/opt/vc/bin/vcgencmd #{command} #{option.to_s}`
     end
   end
 end

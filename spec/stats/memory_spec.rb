@@ -116,20 +116,26 @@ ps                936
 
   subject { PiSys.memory }
 
-  it 'should build the correct variations' do
+  specify 'should build the correct variations' do
     expect(subject[:status]).to be_a Hash
     expect(subject[:usage]).to be_a Hash
     expect(subject[:info]).to be_a Hash
   end
 
+  context 'when asking for info' do
+    specify 'should generate data' do
+      expect(subject[:info]['arm']).to eq '469M'
+    end
+  end
+
   context 'when asking for status' do
-    it 'should generate MemUsed' do
+    specify 'should generate MemUsed' do
       expect(subject[:status]['MemUsed']).to eq 71
     end
   end
 
   context 'when asking for usage' do
-    it 'should be sorted by highest memory usage' do
+    specify 'should be sorted by highest memory usage' do
       last = nil
       subject[:usage].each do |_, usage|
         last ||= usage

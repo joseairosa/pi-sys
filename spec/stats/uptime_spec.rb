@@ -11,16 +11,16 @@ describe PiSys::Uptime do
 
   subject { PiSys.uptime }
 
-  it 'should respond to time' do
+  specify 'should respond to time' do
     expect(subject[:time]).to eq '23:34:05'
   end
-  it 'should respond to up' do
+  specify 'should respond to up' do
     expect(subject[:up]).to eq '1 day, 52 min'
   end
-  it 'should respond to users' do
+  specify 'should respond to users' do
     expect(subject[:users]).to eq '1'
   end
-  it 'should respond to load_average' do
+  specify 'should respond to load_average' do
     expect(subject[:load_average]).to eq(one: '0.08', five: '0.09', fiftheen: '0.12')
   end
 end
