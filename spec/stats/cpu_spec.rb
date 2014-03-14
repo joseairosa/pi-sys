@@ -61,12 +61,18 @@ describe PiSys::Cpu do
       expect(usage).to be_a Hash
     end
   end
+
+  it('should respond to user') { expect(subject['deluged'][:user]).to eq 5.26 }
+  it('should respond to system') { expect(subject['deluged'][:system]).to eq 1.17 }
+  it('should respond to guest') { expect(subject['deluged'][:guest]).to eq 0.00 }
+  it('should respond to percentage') { expect(subject['deluged'][:total]).to eq 6.43 }
+
   it 'should be sorted by highest cpu usage' do
     last = nil
-    subject.each do |process, usage|
-      last ||= usage[:percentage]
-      expect(usage[:percentage]).to be <= last
-      last = usage[:percentage]
+    subject.each do |_, usage|
+      last ||= usage[:total]
+      expect(usage[:total]).to be <= last
+      last = usage[:total]
     end
   end
 end
