@@ -14,9 +14,7 @@ module PiSys
       super
 
       # status
-      file = File.open('/proc/meminfo', 'rb')
-      output = file.read
-      file.close
+      output = fetch_status
       output.gsub!(/ kB$/, '').gsub(/\: */, ' ')
       to_hash([KEY, :status], output) do |data|
         {data[0].to_sym => data[1].to_i / 1024}
@@ -28,7 +26,7 @@ module PiSys
       STATS[KEY][:info] = @vcgencmd.fetch
 
       # usage
-      output = `ps -eo comm,rss`
+      output = fetch_usage
       to_hash([KEY, :usage], output, 1) do |data|
         name = data[0]
         value = data[1].to_i / 1024
@@ -42,6 +40,19 @@ module PiSys
 
       STATS[KEY][:usage] = Hash[STATS[KEY][:usage].sort_by { |_, v| -v }]
       STATS[KEY]
+    end
+
+    private
+
+    def fetch_status
+      file = File.open('/proc/meminfo', 'rb')
+      output = file.read
+      file.close
+      output
+    end
+
+    def fetch_usage
+      `ps -eo comm,rss`
     end
   end
 end
