@@ -11,18 +11,19 @@ module PiSys
       end
     end
 
-    def to_hash(stat, output, start_index=0)
+    def to_hash(statistic, output, start_index=0)
       output.strip.split("\n")[start_index..-1].each do |data_line|
         data = data_line.split(' ')
         unless data.empty?
           if stat.kind_of? Array
-            STATS[stat[0]][stat[1]].merge!(yield(data)) if block_given?
+            STATS[statistic[0]][statistic[1]].merge!(yield(data)) if block_given?
           else
-            STATS[stat].merge!(yield(data)) if block_given?
+            STATS[statistic] ||= {}
+            STATS[statistic].merge!(yield(data)) if block_given?
           end
         end
       end
-      STATS[stat]
+      STATS[statistic]
     end
 
     private
