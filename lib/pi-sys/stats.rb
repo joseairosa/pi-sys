@@ -2,7 +2,7 @@ module PiSys
   class Stats
     def initialize(key, variations)
       @key, @variations = key, variations
-      STATS[@key] = self
+      STATS[@key] = {}
 
       if @variations
         @variations.each { |method|
