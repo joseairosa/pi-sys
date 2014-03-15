@@ -34,7 +34,7 @@ module PiSys
     end
 
     def run_command(command, option=nil)
-      `/opt/vc/bin/vcgencmd #{command} #{option.to_s}`
+      super("/opt/vc/bin/vcgencmd #{command} #{option.to_s}")
     end
   end
 end

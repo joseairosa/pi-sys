@@ -11,7 +11,7 @@ module PiSys
     def fetch
       super
 
-      output = `uptime`
+      output = run_command 'uptime'
 
       to_hash(KEY, output) do |data|
         index_of_reference = data.index('user,') || data.index('users,')

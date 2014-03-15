@@ -11,7 +11,7 @@ module PiSys
     def fetch
       super
 
-      output = `pidstat -h`
+      output = run_command 'pidstat -h'
 
       to_hash(KEY, output, 3) do |data|
         name = data[7]

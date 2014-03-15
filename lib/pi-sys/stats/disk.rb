@@ -30,11 +30,11 @@ module PiSys
     private
 
     def fetch_io
-      `pidstat -h`
+      run_command('pidstat -h')
     end
 
     def fetch_usage
-      `df`
+      run_command('df')
     end
   end
 end

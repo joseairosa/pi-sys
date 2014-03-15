@@ -37,5 +37,9 @@ module PiSys
     def fetch
       reset
     end
+
+    def run_command(command)
+      `#{command}`
+    end
   end
 end

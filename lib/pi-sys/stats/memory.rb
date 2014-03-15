@@ -53,7 +53,7 @@ module PiSys
     end
 
     def fetch_usage
-      `ps -eo comm,rss`
+      run_command 'ps -eo comm,rss'
     end
   end
 end
