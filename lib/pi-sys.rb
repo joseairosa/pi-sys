@@ -2,7 +2,16 @@ $:.push("#{File.dirname(__FILE__)}/..")
 
 require 'lib/pi-sys/stats'
 require 'lib/pi-sys/stats/vcgencmd'
-Dir['lib/pi-sys/stats/*.rb'].each {|file| require file }
+require 'lib/pi-sys/stats/cpu'
+require 'lib/pi-sys/stats/memory'
+require 'lib/pi-sys/stats/clock'
+require 'lib/pi-sys/stats/codec'
+require 'lib/pi-sys/stats/config'
+require 'lib/pi-sys/stats/disk'
+require 'lib/pi-sys/stats/temperature'
+require 'lib/pi-sys/stats/uptime'
+require 'lib/pi-sys/stats/voltage'
+require 'lib/pi-sys/stats/bandwidth'
 
 module PiSys
   STATS = {}
