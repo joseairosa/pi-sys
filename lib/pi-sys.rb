@@ -24,4 +24,9 @@ module PiSys
       define_method(mod) { MODULES[mod].fetch }
     end
   end
+
+  def self.fetch
+    MODULES.values.map(:fetch)
+    STATS
+  end
 end
