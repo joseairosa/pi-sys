@@ -6,7 +6,7 @@ Dir['lib/pi-sys/stats/*.rb'].each {|file| require file }
 
 module PiSys
   STATS = {}
-  MODULES = [:cpu, :disk, :memory, :clock, :voltage, :temperature, :codec, :config, :uptime].map { |mod|
+  MODULES = [:cpu, :disk, :memory, :clock, :voltage, :temperature, :codec, :config, :uptime, :bandwidth].map { |mod|
     {mod => const_get(mod.to_s.capitalize).new}
   }.reduce({}, :merge)
 
