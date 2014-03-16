@@ -15,8 +15,6 @@ module PiSys
       super(@key, nil)
     end
 
-    private
-
     def fetch(command=@command)
       if COMMANDS.has_key? command
         if COMMANDS[command]
