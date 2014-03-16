@@ -26,7 +26,7 @@ module PiSys
   end
 
   def self.fetch
-    MODULES.values.map(:fetch)
+    MODULES.values.map(&:fetch)
     STATS
   end
 end
