@@ -9,4 +9,4 @@ Retrieve Raspbian OS system resource status
 
 In order to retreive data from your raspberypi simply add `require 'pi-sys'` to your ruby script.
 
-From there simply call `PiSys.fetch`.
+From there call `PiSys.fetch`.
