@@ -13,6 +13,8 @@ Gem::Specification.new do |s|
   s.authors     = ['José Airosa']
   s.email       = 'me@joseairosa.com'
   s.files       = %w(lib/pi-sys.rb)
+  s.homepage    = 'https://github.com/joseairosa/pi-sys'
+  s.licenses    = %w(LICENSE)
 
   s.files = Dir['{app,config,db,lib}/**/*'] + %w(LICENSE README.md)
 
