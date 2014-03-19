@@ -12,10 +12,12 @@ require 'lib/pi-sys/stats/temperature'
 require 'lib/pi-sys/stats/uptime'
 require 'lib/pi-sys/stats/voltage'
 require 'lib/pi-sys/stats/bandwidth'
+require 'lib/pi-sys/stats/deluge'
 
 module PiSys
   STATS = {}
-  MODULES = [:cpu, :disk, :memory, :clock, :voltage, :temperature, :codec, :config, :uptime, :bandwidth].map { |mod|
+  MODULES = [:cpu, :disk, :memory, :clock, :voltage, :temperature,
+             :codec, :config, :uptime, :bandwidth, :deluge].map { |mod|
     {mod => const_get(mod.to_s.capitalize).new}
   }.reduce({}, :merge)
 
