@@ -75,4 +75,12 @@ describe PiSys::Cpu do
       last = usage[:total]
     end
   end
+
+  context 'when running the command returns an error' do
+    before do
+      allow_any_instance_of(Kernel).to receive(:`).and_return(nil)
+    end
+
+    specify { expect(subject).to eq({}) }
+  end
 end

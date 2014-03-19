@@ -23,4 +23,12 @@ describe PiSys::Uptime do
   specify 'should respond to load_average' do
     expect(subject[:load_average]).to eq(one: '0.08', five: '0.09', fiftheen: '0.12')
   end
+
+  context 'when running the command returns an error' do
+    before do
+      allow_any_instance_of(Kernel).to receive(:`).and_return(nil)
+    end
+
+    specify { expect(subject).to eq({}) }
+  end
 end

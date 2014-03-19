@@ -21,12 +21,18 @@ module PiSys
           hash ||= {}
           COMMANDS[command].each do |option|
             output = run_command(command, option)
-            hash[option] = Hash[output.strip.split("\n").map {|entry| entry.split('=')}]
+            if output
+              hash[option] = Hash[output.strip.split("\n").map {|entry| entry.split('=')}]
+            end
           end
           hash
         else
           output = run_command(command)
-          Hash[output.strip.split("\n").map {|entry| entry.split('=')}]
+          if output
+            Hash[output.strip.split("\n").map {|entry| entry.split('=')}]
+          else
+            {}
+          end
         end
       end
     end

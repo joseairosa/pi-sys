@@ -144,4 +144,14 @@ ps                936
       end
     end
   end
+
+  context 'when running the command returns an error' do
+    before do
+      allow_any_instance_of(PiSys::Vcgencmd).to receive(:fetch).and_return(nil)
+      allow_any_instance_of(described_class).to receive(:fetch_status).and_return(nil)
+      allow_any_instance_of(described_class).to receive(:fetch_usage).and_return(nil)
+    end
+
+    specify { expect(subject).to eq({:status=>{}, :info=>{}, :usage=>{}}) }
+  end
 end

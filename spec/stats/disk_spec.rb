@@ -41,4 +41,13 @@ tmpfs              99380        0     99380   0% /run/shm
       expect(subject[:usage]['rootfs']).to eq({used: '2710496', available: 4152800, percentage: 40, mounted_on: '/'})
     end
   end
+
+  context 'when running the command returns an error' do
+    before do
+      allow_any_instance_of(described_class).to receive(:fetch_io).and_return(nil)
+      allow_any_instance_of(described_class).to receive(:fetch_usage).and_return(nil)
+    end
+
+    specify { expect(subject).to eq({}) }
+  end
 end

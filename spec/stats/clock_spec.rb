@@ -16,4 +16,12 @@ frequency(45)=700074000
       expect(subject[option]).to be_a Hash
     end
   }
+
+  context 'when running the command returns an error' do
+    before do
+      allow_any_instance_of(PiSys::Vcgencmd).to receive(:run_command).and_return(nil)
+    end
+
+    specify { expect(subject).to eq({}) }
+  end
 end
