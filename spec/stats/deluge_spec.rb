@@ -25,6 +25,7 @@ Tracker status: torrentleech.org: Announce OK
   subject { PiSys.deluge }
 
   specify { expect(subject).to be_a Array }
+  specify { expect(subject.count).to eq 2 }
 
   context 'when running the command returns an error' do
     before do
