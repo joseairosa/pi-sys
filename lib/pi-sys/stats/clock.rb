@@ -8,7 +8,7 @@ module PiSys
     end
 
     def fetch
-      super
+      STATS[KEY] = super
     end
   end
 end
