@@ -10,7 +10,7 @@ temp=54.1'C
 
   subject { PiSys.temperature }
 
-  specify { expect(subject['temp']).to eq "54.1'C" }
+  specify { expect(subject['temp']).to eq '54.1' }
 
   context 'when running the command returns an error' do
     before do

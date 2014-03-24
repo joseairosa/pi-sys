@@ -9,6 +9,8 @@ module PiSys
 
     def fetch
       STATS[KEY] = super
+      STATS[KEY]['temp'].gsub!("'C", '') if STATS[KEY]['temp']
+      STATS[KEY]
     end
   end
 end
