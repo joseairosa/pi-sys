@@ -16,7 +16,7 @@ module PiSys
       if output
         hash = {}
         output.strip.split("\n")[0..-1].each do |data_line|
-          if data_line.empty?
+          if data_line.empty? || data_line == ' '
             STATS[KEY] << hash
             hash = {}
           else
