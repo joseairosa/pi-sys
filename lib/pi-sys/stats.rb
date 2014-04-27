@@ -39,7 +39,11 @@ module PiSys
     end
 
     def run_command(command)
-      `#{command}`
+      begin
+        `#{command}`
+      rescue Errno::ENOENT => e
+        nil
+      end
     end
   end
 end

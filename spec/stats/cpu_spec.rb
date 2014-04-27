@@ -76,11 +76,11 @@ describe PiSys::Cpu do
     end
   end
 
-  context 'when running the command returns an error' do
+  context 'when command not found' do
     before do
-      allow_any_instance_of(Kernel).to receive(:`).and_return(nil)
+      allow_any_instance_of(Kernel).to receive(:`).and_raise(Errno::ENOENT, 'No such file or directory - ada')
     end
 
-    specify { expect(subject).to eq({}) }
+    it { should be_empty }
   end
 end

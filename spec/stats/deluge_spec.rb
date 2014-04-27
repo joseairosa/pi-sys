@@ -34,4 +34,12 @@ Tracker status: torrentleech.org: Announce OK
 
     specify { expect(subject).to eq([]) }
   end
+
+  context 'when command not found' do
+    before do
+      allow_any_instance_of(Kernel).to receive(:`).and_raise(Errno::ENOENT, 'No such file or directory - ada')
+    end
+
+    it { should be_empty }
+  end
 end
