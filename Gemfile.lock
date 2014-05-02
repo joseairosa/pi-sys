@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     pi-sys (1.1.4)
-      usagewatch
+      usagewatch (~> 0.0.7)
 
 GEM
   remote: http://rubygems.org/

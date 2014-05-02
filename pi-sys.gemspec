@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.files = Dir['{app,config,db,lib}/**/*'] + %w(LICENSE README.md)
 
-  s.add_dependency 'usagewatch'
+  s.add_dependency 'usagewatch', '~> 0.0.7'
 
   s.add_development_dependency 'pry-plus', '~> 1.0.0'
   s.add_development_dependency 'rake', '~> 10.1.0'
