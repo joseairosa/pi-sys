@@ -17,7 +17,7 @@ require 'lib/pi-sys/stats/deluge'
 module PiSys
   STATS = {}
   MODULES = [:cpu, :disk, :memory, :clock, :voltage, :temperature,
-             :codec, :config, :uptime, :bandwidth, :deluge].map { |mod|
+             :codec, :config, :uptime, :bandwidth].map { |mod|
     {mod => const_get(mod.to_s.capitalize).new}
   }.reduce({}, :merge)
 

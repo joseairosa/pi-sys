@@ -22,17 +22,17 @@ Tracker status: torrentleech.org: Announce OK
     }
   end
 
-  subject { PiSys.deluge }
+  xit { PiSys.deluge }
 
-  specify { expect(subject).to be_a Array }
-  specify { expect(subject.count).to eq 2 }
+  xit { expect(subject).to be_a Array }
+  xit { expect(subject.count).to eq 2 }
 
   context 'when running the command returns an error' do
     before do
       allow_any_instance_of(Kernel).to receive(:`).and_return(nil)
     end
 
-    specify { expect(subject).to eq([]) }
+    xit { expect(subject).to eq([]) }
   end
 
   context 'when command not found' do
@@ -40,6 +40,6 @@ Tracker status: torrentleech.org: Announce OK
       allow_any_instance_of(Kernel).to receive(:`).and_raise(Errno::ENOENT, 'No such file or directory - ada')
     end
 
-    it { should be_empty }
+    xit { should be_empty }
   end
 end
