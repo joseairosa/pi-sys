@@ -12,7 +12,6 @@ require 'lib/pi-sys/stats/temperature'
 require 'lib/pi-sys/stats/uptime'
 require 'lib/pi-sys/stats/voltage'
 require 'lib/pi-sys/stats/bandwidth'
-require 'lib/pi-sys/stats/deluge'
 
 module PiSys
   STATS = {}
