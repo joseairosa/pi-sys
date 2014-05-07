@@ -14,7 +14,8 @@ module PiSys
       output = fetch_io
       if output
         clean_data = output.split("\n").reject { |e| e.empty? }.map { |e| e.split(' ') }
-        relevant_data = clean_data[4..-1]
+        num_of_devices = (clean_data.count - 3) / 2
+        relevant_data = clean_data[(2+num_of_devices)..-1]
         STATS[KEY][:io] = []
         relevant_data[1..-1].each do |data_values|
           new_data = {}
