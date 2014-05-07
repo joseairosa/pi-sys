@@ -42,7 +42,7 @@ module PiSys
     private
 
     def fetch_io
-      run_command('pidstat -dh')
+      run_command('iostat -d -x 1 2')
     end
 
     def fetch_usage
