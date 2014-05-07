@@ -4,11 +4,15 @@ describe PiSys::Disk do
   before do
     allow_any_instance_of(described_class).to receive(:fetch_io) {
 '''
-Linux 3.10.25+ (raspberrypi01) 	14/03/14 	_armv6l_	(1 CPU)
+Linux 3.10.25+ (raspberrypi01) 	06/05/14 	_armv6l_	(1 CPU)
 
-#      Time       PID   kB_rd/s   kB_wr/s kB_ccwr/s  Command
- 1394831695      1831      0.76      0.10      0.00  deluged
- 1394831695      2708      0.08      0.00      0.00  bash
+Device:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util
+mmcblk0          43.60     0.72    1.71    0.50   184.39     8.07   173.83     0.07   29.51   14.01   82.22   7.56   1.67
+sda               1.82     0.03    0.15    1.63     7.87   184.00   215.94     0.72  407.80    7.47  444.92   4.98   0.88
+
+Device:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util
+mmcblk0           0.00     0.00    0.00    0.00     0.00     0.00     0.00     0.00    0.00    0.00    0.00   0.00   0.00
+sda               0.00     0.00    0.00    0.00     0.00     0.00     0.00     0.00    0.00    0.00    0.00   0.00   0.00
 '''
     }
     allow_any_instance_of(described_class).to receive(:fetch_usage) {
@@ -31,13 +35,15 @@ tmpfs              99380        0     99380   0% /run/shm
 
 
   context 'when asking for io' do
-    specify 'should generate data' do
-      expect(subject[:io]['deluged']).to eq({read: '0.76', write: '0.10'})
+    it 'should generate data' do
+      expect(subject[:io]).to be_a Array
+      expect(subject[:io].first['Device:']).to eq('mmcblk0')
+      expect(subject[:io].last['Device:']).to eq('sda')
     end
   end
 
   context 'when asking for usage' do
-    specify 'should generate data' do
+    it 'should generate data' do
       expect(subject[:usage]['rootfs']).to eq({used: '2710496', available: 4152800, percentage: 40, mounted_on: '/'})
     end
   end
@@ -48,6 +54,6 @@ tmpfs              99380        0     99380   0% /run/shm
       allow_any_instance_of(described_class).to receive(:fetch_usage).and_return(nil)
     end
 
-    specify { expect(subject).to eq({}) }
+    it { expect(subject).to eq({}) }
   end
 end

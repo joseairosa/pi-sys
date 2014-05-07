@@ -13,9 +13,15 @@ module PiSys
 
       output = fetch_io
       if output
-        to_hash([KEY, :io], output, 3) do |data|
-          name = data[5]
-          {name => {read: data[2], write: data[3]}}
+        clean_data = output.split("\n").reject { |e| e.empty? }.map { |e| e.split(' ') }
+        relevant_data = clean_data[4..-1]
+        STATS[KEY][:io] = []
+        relevant_data[1..-1].each do |data_values|
+          new_data = {}
+          relevant_data[0].each_with_index do |key, i|
+            new_data[key] = data_values[i]
+          end
+          STATS[KEY][:io] << new_data unless new_data.empty?
         end
       end
 
